@@ -1,26 +1,27 @@
+/* 
+ * 功能说明：
+ *     1.thread_t类的实现。
+ *
+ * 修改历史：
+ *     1.2017-5-6 李先静 创建。
+ */
 #include "thread.h"
 
 #ifdef WIN32 
 #include <Windows.h>
 #include <process.h>
-#define  thread_t HANDLE
+#define  thread_handle_t HANDLE
 #else
 #include "pthread.h"
-#define  thread_t pthread_t
+#define  thread_handle_t pthread_t
 #endif
 
 struct _thread_t {
     void* args;
     bool_t running;
-    thread_t thread;
+    thread_handle_t thread;
     thread_entry_t entry;
 };
-
-typedef struct _thread_t thread_t;
-
-typedef void* (thread_entry_t)(void* args);
-
-BEGIN_C_DECLS
 
 thread_t* thread_create(thread_entry_t entry, void* args) {
     thread_t* thread = NULL;
@@ -36,7 +37,7 @@ thread_t* thread_create(thread_entry_t entry, void* args) {
 }
 
 static void* entry(thread_t* thread) {
-    thread->entry(entry->args);
+    thread->entry(thread->args);
     thread->running = FALSE;
 
     return NULL;
@@ -85,7 +86,4 @@ void thread_destroy(thread_t* thread) {
     return;
 }
 
-END_C_DECLS
-
-#endif
 

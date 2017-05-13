@@ -23,7 +23,7 @@ BEGIN_C_DECLS
 
 /**
  * @method thread_create
- * 创建thread。
+ * 创建thread对象。
  *
  * @return {thread_t*} thread对象。
  */

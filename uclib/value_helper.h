@@ -1,3 +1,10 @@
+/* 
+ * 功能说明：
+ *     1.value_t helper函数。
+ *
+ * 修改历史：
+ *     1.2017-5-6 李先静 创建。
+ */
 #include "uclib/value.h"
 
 #ifndef VALUE_HELPER_H

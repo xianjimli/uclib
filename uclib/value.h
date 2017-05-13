@@ -1,3 +1,11 @@
+/* 
+ * åŠŸèƒ½è¯´æ˜ï¼š
+ *     1.value_tç±»çš„å£°æ˜ã€‚
+ *
+ * ä¿®æ”¹å†å²ï¼š
+ *     1.2017-5-6 æå…ˆé™ åˆ›å»ºã€‚
+ */
+ 
 #include "uclib/types_def.h"
 
 #ifndef VALUE_H
@@ -8,7 +16,7 @@ struct _str_t;
 
 BEGIN_C_DECLS
 
-/*Êı¾İÀàĞÍ¶¨Òå*/
+/*æ•°æ®ç±»å‹å®šä¹‰*/
 typedef enum _value_type_t {
 	VALUE_TYPE_INVALID = 0,
 	VALUE_TYPE_INT8,
@@ -26,7 +34,10 @@ typedef enum _value_type_t {
 	VALUE_TYPE_OBJECT
 }value_type_t;
 
-/*value_t´ú±íÒ»¸öÍ¨ÓÃµÄÊı¾İÀàĞÍ£¬¿ÉÒÔ±£´æÈÎºÎÊı¾İ¸ñÊ½µÄÊı¾İ¡£*/
+/**
+ * @class value_t
+ * ä¸€ä¸ªé€šç”¨æ•°æ®ç±»å‹ï¼Œç”¨æ¥å­˜æ”¾æ•´æ•°ã€æµ®ç‚¹æ•°ã€obj_tã€str_tå’Œå…¶å®ƒå¯¹è±¡ã€‚
+ */
 typedef struct _value_t {
 	uint32_t type;
 	union {
@@ -39,7 +50,7 @@ typedef struct _value_t {
 		int64_t i64;
 		uint64_t u64;
 		float f32;
-		double f65;
+		double f64;
 
 		pointer_t ptr;
 		struct _str_t* str;
@@ -48,267 +59,306 @@ typedef struct _value_t {
 }value_t;
 
 /**
- * \brief ³õÊ¼»¯value_tÎªÒ»¸ö8Î»ÓĞ·ûºÅÊı¡£
+ * @method value_set_int8
+ * è®¾ç½®ç±»å‹ä¸ºint8çš„å€¼ã€‚
+ * @param {value_t*} v     valueå¯¹è±¡ã€‚
+ * @param {int8_t}   value å¾…è®¾ç½®çš„å€¼ã€‚
  *
- * \param[in] gv            £º value_t¶ÔÏó
- * \param[in] value         £º ³õÊ¼»¯µÄÖµ¡£
- * 
- * \retval value_t¶ÔÏó±¾Éí
+ * @return {value_t*} valueå¯¹è±¡æœ¬èº«ã€‚
  */
-value_t* value_set_int8(value_t* gv, int8_t value);
+value_t* value_set_int8(value_t* v, int8_t value);
 
 /**
- * \brief »ñÈ¡8Î»ÓĞ·ûºÅÊı¡£µ÷ÓÃÕßĞèÒª±£Ö¤value_tµÄÀàĞÍÊÇ8Î»ÓĞ·ûºÅÊı¡£
+ * @method value_int8
+ * è·å–ç±»å‹ä¸ºint8çš„å€¼ã€‚
+ * @param {value_t} v valueå¯¹è±¡ã€‚
  *
- * \param[in] gv            £º value_t¶ÔÏó
- * 
- * \retval value_t¶ÔÏóµÄÖµ¡£
+ * @return {int8_t} å€¼ã€‚
  */
-int8_t value_int8(value_t* gv);
+int8_t value_int8(value_t v);
 
 /**
- * \brief ³õÊ¼»¯value_tÎªÒ»¸ö8Î»ÎŞ·ûºÅÊı¡£
+ * @method value_set_uint8
+ * è®¾ç½®ç±»å‹ä¸ºuint8çš„å€¼ã€‚
+ * @param {value_t*} v     valueå¯¹è±¡ã€‚
+ * @param {uint8_t}  value å¾…è®¾ç½®çš„å€¼ã€‚
  *
- * \param[in] gv            £º value_t¶ÔÏó
- * \param[in] value         £º ³õÊ¼»¯µÄÖµ¡£
- * 
- * \retval value_t¶ÔÏó±¾Éí
+ * @return {value_t*} valueå¯¹è±¡æœ¬èº«ã€‚
  */
-value_t* value_set_uint8(value_t* gv, uint8_t value);
+value_t* value_set_uint8(value_t* v, uint8_t value);
 
 /**
- * \brief »ñÈ¡8Î»ÎŞ·ûºÅÊı¡£µ÷ÓÃÕßĞèÒª±£Ö¤value_tµÄÀàĞÍÊÇ8Î»ÎŞ·ûºÅÊı¡£
+ * @method value_uint8
+ * è·å–ç±»å‹ä¸ºuint8çš„å€¼ã€‚
+ * @param {value_t} v valueå¯¹è±¡ã€‚
  *
- * \param[in] gv            £º value_t¶ÔÏó
- * 
- * \retval value_t¶ÔÏóµÄÖµ¡£
+ * @return {int8_t} å€¼ã€‚
  */
-uint8_t value_uint8(value_t* gv);
+uint8_t value_uint8(value_t v);
 
 /**
- * \brief ³õÊ¼»¯value_tÎªÒ»¸ö16Î»ÓĞ·ûºÅÊı¡£
+ * @method value_set_int16
+ * è®¾ç½®ç±»å‹ä¸ºint16çš„å€¼ã€‚
+ * @param {value_t*} v     valueå¯¹è±¡ã€‚
+ * @param {int16_t}  value å¾…è®¾ç½®çš„å€¼ã€‚
  *
- * \param[in] gv            £º value_t¶ÔÏó
- * \param[in] value         £º ³õÊ¼»¯µÄÖµ¡£
- * 
- * \retval value_t¶ÔÏó±¾Éí
+ * @return {value_t*} valueå¯¹è±¡æœ¬èº«ã€‚
  */
-value_t* value_set_int16(value_t* gv, int16_t value) ;
+value_t* value_set_int16(value_t* v, int16_t value) ;
 
 /**
- * \brief »ñÈ¡16Î»ÓĞ·ûºÅÊı¡£µ÷ÓÃÕßĞèÒª±£Ö¤value_tµÄÀàĞÍÊÇ16Î»ÓĞ·ûºÅÊı¡£
+ * @method value_int16
+ * è·å–ç±»å‹ä¸ºint16çš„å€¼ã€‚
+ * @param {value_t} v valueå¯¹è±¡ã€‚
  *
- * \param[in] gv            £º value_t¶ÔÏó
- * 
- * \retval value_t¶ÔÏóµÄÖµ¡£
+ * @return {int16_t} å€¼ã€‚
  */
-int16_t value_int16(value_t* gv);
+int16_t value_int16(value_t v);
 
 /**
- * \brief ³õÊ¼»¯value_tÎªÒ»¸ö16Î»ÎŞ·ûºÅÊı¡£
+ * @method value_set_uint16
+ * è®¾ç½®ç±»å‹ä¸ºuint16çš„å€¼ã€‚
+ * @param {value_t*} v     valueå¯¹è±¡ã€‚
+ * @param {uint16_t} value å¾…è®¾ç½®çš„å€¼ã€‚
  *
- * \param[in] gv            £º value_t¶ÔÏó
- * \param[in] value         £º ³õÊ¼»¯µÄÖµ¡£
- * 
- * \retval value_t¶ÔÏó±¾Éí
+ * @return {value_t*} valueå¯¹è±¡æœ¬èº«ã€‚
  */
-value_t* value_set_uint16(value_t* gv, uint16_t value);
+value_t* value_set_uint16(value_t* v, uint16_t value);
 
 /**
- * \brief »ñÈ¡16Î»ÎŞ·ûºÅÊı¡£µ÷ÓÃÕßĞèÒª±£Ö¤value_tµÄÀàĞÍÊÇ16Î»ÎŞ·ûºÅÊı¡£
+ * @method value_uint16
+ * è·å–ç±»å‹ä¸ºuint16çš„å€¼ã€‚
+ * @param {value_t} v valueå¯¹è±¡ã€‚
  *
- * \param[in] gv            £º value_t¶ÔÏó
- * 
- * \retval value_t¶ÔÏóµÄÖµ¡£
+ * @return {uint16_t} å€¼ã€‚
  */
-uint16_t value_uint16(value_t* gv);
+uint16_t value_uint16(value_t v);
 
 /**
- * \brief ³õÊ¼»¯value_tÎªÒ»¸ö32Î»ÓĞ·ûºÅÊı¡£
+ * @method value_set_int32
+ * è®¾ç½®ç±»å‹ä¸ºint32çš„å€¼ã€‚
+ * @param {value_t*} v     valueå¯¹è±¡ã€‚
+ * @param {int32_t}  value å¾…è®¾ç½®çš„å€¼ã€‚
  *
- * \param[in] gv            £º value_t¶ÔÏó
- * \param[in] value         £º ³õÊ¼»¯µÄÖµ¡£
- * 
- * \retval value_t¶ÔÏó±¾Éí
+ * @return {value_t*} valueå¯¹è±¡æœ¬èº«ã€‚
  */
-value_t* value_set_int32(value_t* gv, int32_t value);
+value_t* value_set_int32(value_t* v, int32_t value);
 
 /**
- * \brief »ñÈ¡32Î»ÓĞ·ûºÅÊı¡£µ÷ÓÃÕßĞèÒª±£Ö¤value_tµÄÀàĞÍÊÇ32Î»ÓĞ·ûºÅÊı¡£
+ * @method value_int32
+ * è·å–ç±»å‹ä¸ºint32çš„å€¼ã€‚
+ * @param {value_t} v valueå¯¹è±¡ã€‚
  *
- * \param[in] gv            £º value_t¶ÔÏó
- * 
- * \retval value_t¶ÔÏóµÄÖµ¡£
+ * @return {int32_t} å€¼ã€‚
  */
-int32_t value_int32(value_t* gv);
+int32_t value_int32(value_t v);
 
 /**
- * \brief ³õÊ¼»¯value_tÎªÒ»¸ö32Î»ÎŞ·ûºÅÊı¡£
+ * @method value_set_uint32
+ * è®¾ç½®ç±»å‹ä¸ºuint32çš„å€¼ã€‚
+ * @param {value_t*} v     valueå¯¹è±¡ã€‚
+ * @param {uint32_t} value å¾…è®¾ç½®çš„å€¼ã€‚
  *
- * \param[in] gv            £º value_t¶ÔÏó
- * \param[in] value         £º ³õÊ¼»¯µÄÖµ¡£
- * 
- * \retval value_t¶ÔÏó±¾Éí
+ * @return {value_t*} valueå¯¹è±¡æœ¬èº«ã€‚
  */
-value_t* value_set_uint32(value_t* gv, uint32_t value);
+value_t* value_set_uint32(value_t* v, uint32_t value);
 
 /**
- * \brief »ñÈ¡32Î»ÎŞ·ûºÅÊı¡£µ÷ÓÃÕßĞèÒª±£Ö¤value_tµÄÀàĞÍÊÇ32Î»ÎŞ·ûºÅÊı¡£
+ * @method value_uint32
+ * è·å–ç±»å‹ä¸ºuint32çš„å€¼ã€‚
+ * @param {value_t} v valueå¯¹è±¡ã€‚
  *
- * \param[in] gv            £º value_t¶ÔÏó
- * 
- * \retval value_t¶ÔÏóµÄÖµ¡£
+ * @return {uint32_t} å€¼ã€‚
  */
-uint32_t value_uint32(value_t* gv);
+uint32_t value_uint32(value_t v);
 
 /**
- * \brief ³õÊ¼»¯value_tÎªÒ»¸ö64Î»ÓĞ·ûºÅÊı¡£
+ * @method value_set_int64
+ * è®¾ç½®ç±»å‹ä¸ºint64çš„å€¼ã€‚
+ * @param {value_t*} v     valueå¯¹è±¡ã€‚
+ * @param {int64_t}  value å¾…è®¾ç½®çš„å€¼ã€‚
  *
- * \param[in] gv            £º value_t¶ÔÏó
- * \param[in] value         £º ³õÊ¼»¯µÄÖµ¡£
- * 
- * \retval value_t¶ÔÏó±¾Éí
+ * @return {value_t*} valueå¯¹è±¡æœ¬èº«ã€‚
  */
-value_t* value_set_int64(value_t* gv, int64_t value);
+value_t* value_set_int64(value_t* v, int64_t value);
 
 /**
- * \brief »ñÈ¡64Î»ÓĞ·ûºÅÊı¡£µ÷ÓÃÕßĞèÒª±£Ö¤value_tµÄÀàĞÍÊÇ64Î»ÓĞ·ûºÅÊı¡£
+ * @method value_int64
+ * è·å–ç±»å‹ä¸ºint64çš„å€¼ã€‚
+ * @param {value_t} v valueå¯¹è±¡ã€‚
  *
- * \param[in] gv            £º value_t¶ÔÏó
- * 
- * \retval value_t¶ÔÏóµÄÖµ¡£
+ * @return {int64_t} å€¼ã€‚
  */
-int64_t value_int64(value_t* gv);
+int64_t value_int64(value_t v);
 
 /**
- * \brief ³õÊ¼»¯value_tÎªÒ»¸ö64Î»ÎŞ·ûºÅÊı¡£
+ * @method value_set_uint64
+ * è®¾ç½®ç±»å‹ä¸ºuint64çš„å€¼ã€‚
+ * @param {value_t*} v     valueå¯¹è±¡ã€‚
+ * @param {uint64_t} value å¾…è®¾ç½®çš„å€¼ã€‚
  *
- * \param[in] gv            £º value_t¶ÔÏó
- * \param[in] value         £º ³õÊ¼»¯µÄÖµ¡£
- * 
- * \retval value_t¶ÔÏó±¾Éí
+ * @return {value_t*} valueå¯¹è±¡æœ¬èº«ã€‚
  */
-value_t* value_set_uint64(value_t* gv, uint64_t value);
+value_t* value_set_uint64(value_t* v, uint64_t value);
 
 /**
- * \brief »ñÈ¡64Î»ÎŞ·ûºÅÊı¡£µ÷ÓÃÕßĞèÒª±£Ö¤value_tµÄÀàĞÍÊÇ64Î»ÎŞ·ûºÅÊı¡£
+ * @method value_uint64
+ * è·å–ç±»å‹ä¸ºuint64çš„å€¼ã€‚
+ * @param {value_t} v valueå¯¹è±¡ã€‚
  *
- * \param[in] gv            £º value_t¶ÔÏó
- * 
- * \retval value_t¶ÔÏóµÄÖµ¡£
+ * @return {uint64_t} å€¼ã€‚
  */
-uint64_t value_uint64(value_t* gv);
+uint64_t value_uint64(value_t v);
 
 /**
- * \brief ³õÊ¼»¯value_tÎªÒ»¸öÖ¸Õë¡£
+ * @method value_set_pointer
+ * è®¾ç½®ç±»å‹ä¸ºpointerçš„å€¼ã€‚
+ * @param {value_t*}  v       valueå¯¹è±¡ã€‚
+ * @param {void*}     value   å¾…è®¾ç½®çš„å€¼ã€‚
+ * @param {destroy_t} destroy é”€æ¯æŒ‡é’ˆçš„å‡½æ•°æŒ‡é’ˆã€‚
  *
- * \param[in] gv            £º value_t¶ÔÏó
- * \param[in] value         £º ³õÊ¼»¯µÄÖµ¡£
- * 
- * \retval value_t¶ÔÏó±¾Éí
+ * @return {value_t*} valueå¯¹è±¡æœ¬èº«ã€‚
  */
-value_t* value_set_pointer(value_t* gv, void* value, destroy_t destroy);
+value_t* value_set_pointer(value_t* v, void* value, destroy_t destroy);
 
 /**
- * \brief »ñÈ¡Ö¸Õë¡£µ÷ÓÃÕßĞèÒª±£Ö¤value_tµÄÀàĞÍÊÇÖ¸Õë¡£
+ * @method value_pointer
+ * è·å–ç±»å‹ä¸ºpointerçš„å€¼ã€‚
+ * @param {value_t} v valueå¯¹è±¡ã€‚
  *
- * \param[in] gv            £º value_t¶ÔÏó
- * 
- * \retval value_t¶ÔÏóµÄÖµ¡£
+ * @return {uint64_t} å€¼ã€‚
  */
-void* value_pointer(value_t* gv);
+void* value_pointer(value_t v);
 
 /**
- * \brief ³õÊ¼»¯value_tÎªÒ»¸öµ¥¾«¶È¸¡µãÊı¡£
+ * @method value_set_float
+ * è®¾ç½®ç±»å‹ä¸ºfloatçš„å€¼ã€‚
+ * @param {value_t*} v     valueå¯¹è±¡ã€‚
+ * @param {float}    value å¾…è®¾ç½®çš„å€¼ã€‚
  *
- * \param[in] gv            £º value_t¶ÔÏó
- * \param[in] value         £º ³õÊ¼»¯µÄÖµ¡£
- * 
- * \retval value_t¶ÔÏó±¾Éí
+ * @return {value_t*} valueå¯¹è±¡æœ¬èº«ã€‚
  */
-value_t* value_set_float(value_t* gv, float value);
+value_t* value_set_float(value_t* v, float value);
 
 /**
- * \brief »ñÈ¡µ¥¾«¶È¸¡µãÊı¡£µ÷ÓÃÕßĞèÒª±£Ö¤value_tµÄÀàĞÍÊÇµ¥¾«¶È¸¡µãÊı¡£
+ * @method value_float
+ * è·å–ç±»å‹ä¸ºfloatçš„å€¼ã€‚
+ * @param {value_t} v valueå¯¹è±¡ã€‚
  *
- * \param[in] gv            £º value_t¶ÔÏó
- * 
- * \retval value_t¶ÔÏóµÄÖµ¡£
+ * @return {float} å€¼ã€‚
  */
-float value_float(value_t* gv);
+float value_float(value_t v);
 
 /**
- * \brief ³õÊ¼»¯value_tÎªÒ»¸öË«¾«¶È¸¡µãÊı¡£
+ * @method value_set_double
+ * è®¾ç½®ç±»å‹ä¸ºdoubleçš„å€¼ã€‚
+ * @param {value_t*} v     valueå¯¹è±¡ã€‚
+ * @param {double}   value å¾…è®¾ç½®çš„å€¼ã€‚
  *
- * \param[in] gv            £º value_t¶ÔÏó
- * \param[in] value         £º ³õÊ¼»¯µÄÖµ¡£
- * 
- * \retval value_t¶ÔÏó±¾Éí
+ * @return {value_t*} valueå¯¹è±¡æœ¬èº«ã€‚
  */
-value_t* value_set_double(value_t* gv, double value);
+value_t* value_set_double(value_t* v, double value);
 
 /**
- * \brief »ñÈ¡Ë«¾«¶È¸¡µãÊı¡£µ÷ÓÃÕßĞèÒª±£Ö¤value_tµÄÀàĞÍÊÇË«¾«¶È¸¡µãÊı¡£
+ * @method value_double
+ * è·å–ç±»å‹ä¸ºdoubleçš„å€¼ã€‚
+ * @param {value_t} v valueå¯¹è±¡ã€‚
  *
- * \param[in] gv            £º value_t¶ÔÏó
- * 
- * \retval value_t¶ÔÏóµÄÖµ¡£
+ * @return {double} å€¼ã€‚
  */
-double value_double(value_t* gv);
+double value_double(value_t v);
 
 /**
- * \brief ³õÊ¼»¯value_tÎªÒ»¸ö¶ÔÏó¡£
+ * @method value_set_obj
+ * è®¾ç½®ç±»å‹ä¸ºobj_tçš„å€¼ã€‚
+ * @param {value_t*} v     valueå¯¹è±¡ã€‚
+ * @param {obj_t*}   value å¾…è®¾ç½®çš„å€¼ã€‚
  *
- * \param[in] gv            £º value_t¶ÔÏó
- * \param[in] value         £º ³õÊ¼»¯µÄÖµ¡£
- * 
- * \retval value_t¶ÔÏó±¾Éí
+ * @return {value_t*} valueå¯¹è±¡æœ¬èº«ã€‚
  */
-value_t* value_set_obj(value_t* gv, struct _obj_t* value);
+value_t* value_set_obj(value_t* v, struct _obj_t* value);
 
 /**
- * \brief »ñÈ¡¶ÔÏó¡£µ÷ÓÃÕßĞèÒª±£Ö¤value_tµÄÀàĞÍÊÇ¶ÔÏó¡£
+ * @method value_obj
+ * è·å–ç±»å‹ä¸ºobj_tçš„å€¼ã€‚
+ * @param {value_t} v valueå¯¹è±¡ã€‚
  *
- * \param[in] gv            £º value_t¶ÔÏó
- * 
- * \retval value_t¶ÔÏóµÄÖµ¡£
+ * @return {obj_t*} å€¼ã€‚
  */
-struct _obj_t* value_obj(value_t* gv);
+struct _obj_t* value_obj(value_t v);
 
 /**
- * \brief ³õÊ¼»¯value_tÎªÒ»¸ö¶ÔÏó¡£
+ * @method value_set_str
+ * è®¾ç½®ç±»å‹ä¸ºstr_tçš„å€¼ã€‚
+ * @param {value_t*} v     valueå¯¹è±¡ã€‚
+ * @param {str_t*}   value å¾…è®¾ç½®çš„å€¼ã€‚
  *
- * \param[in] gv            £º value_t¶ÔÏó
- * \param[in] value         £º ³õÊ¼»¯µÄÖµ¡£
- * 
- * \retval value_t¶ÔÏó±¾Éí
+ * @return {value_t*} valueå¯¹è±¡æœ¬èº«ã€‚
  */
-value_t* value_set_str(value_t* gv, struct _str_t* value);
+value_t* value_set_str(value_t* v, struct _str_t* value);
 
 /**
- * \brief »ñÈ¡¶ÔÏó¡£µ÷ÓÃÕßĞèÒª±£Ö¤value_tµÄÀàĞÍÊÇ¶ÔÏó¡£
+ * @method value_str
+ * è·å–ç±»å‹ä¸ºstr_tçš„å€¼ã€‚
+ * @param {value_t} v valueå¯¹è±¡ã€‚
  *
- * \param[in] gv            £º value_t¶ÔÏó
- * 
- * \retval value_t¶ÔÏóµÄÖµ¡£
+ * @return {str_t*} å€¼ã€‚
  */
-struct _str_t* value_str(value_t* gv);
-
+struct _str_t* value_str(value_t v);
 
 /**
- * \brief ¿½±´Ò»¸övalue_t¶ÔÏóµ½ÁíÍâÒ»¸övalue_t¶ÔÏó¡£
+ * @method value_copy
+ * æ‹·è´ã€‚
+ * @param {value_t*} v         valueå¯¹è±¡ã€‚
+ * @param {value_t*} src       æºvalueå¯¹è±¡ã€‚
+ * @param {bool_t}   deep_copy æ˜¯å¦æ·±åº¦æ‹·è´ã€‚
  *
- * \param[in] dst            £º Ä¿µÄvalue_t¶ÔÏó
- * \param[in] src            £º Ô´value_t¶ÔÏó
- * 
- * \retval value_t¶ÔÏóµÄÖµ¡£
+ * @return {value_t*} valueå¯¹è±¡æœ¬èº«ã€‚
  */
-void value_copy(value_t* dst, const value_t* src, bool_t deep_copy);
+void value_copy(value_t* v, const value_t* src, bool_t deep_copy);
 
-value_t* value_ref(value_t* value);
+/**
+ * @method value_ref
+ * å¢åŠ å¼•ç”¨è®¡æ•°ã€‚
+ * @param {value_t*} v valueå¯¹è±¡ã€‚
+ *
+ * @return {value_t*} valueå¯¹è±¡æœ¬èº«ã€‚
+ */
+value_t* value_ref(value_t* v);
 
-value_t* value_unref(value_t* value);
+/**
+ * @method value_unref
+ * å‡å°‘å¼•ç”¨è®¡æ•°ã€‚
+ * @param {value_t*} v valueå¯¹è±¡ã€‚
+ *
+ * @return {value_t*} å¼•ç”¨è®¡æ•°ä»ç„¶å¤§äº0è¿”å›valueå¯¹è±¡æœ¬èº«ï¼Œå¦åˆ™è¿”å›NULLã€‚
+ */
+value_t* value_unref(value_t* v);
+
+/**
+ * @method value_is_null
+ * åˆ¤æ–­valueæ˜¯å¦ä¸ºç©ºå€¼ã€‚
+ * @param {value_t} value valueå¯¹è±¡ã€‚
+ *
+ * @return {bool_t} ä¸ºç©ºå€¼è¿”å›TRUEï¼Œå¦åˆ™è¿”å›FALSEã€‚
+ */
+bool_t value_is_null(value_t value);
+
+/**
+ * @var {value_null} ç©ºå€¼ã€‚ 
+ */
+extern const value_t value_null;
+
+/**
+ * @method value_to_int
+ * è½¬æ¢ä¸ºintçš„å€¼ã€‚
+ * @param {value_t} v valueå¯¹è±¡ã€‚
+ *
+ * @return {int} å€¼ã€‚
+ */
+int value_to_int(value_t v);
 
 END_C_DECLS
 
 #endif
+

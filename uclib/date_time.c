@@ -1,3 +1,10 @@
+/* 
+ * 功能说明：
+ *     1.时间相关的函数。
+ *
+ * 修改历史：
+ *     1.2017-5-6 李先静 创建。
+ */
 
 #include "date_time.h"
 
@@ -29,5 +36,13 @@ size_t time_now() {
     gettimeofday(&tv, NULL);
 
     return tv.tv_sec * 1000 + tv.tv_usec/1000;
+}
+
+void msleep(uint32_t ms) {
+#ifdef WIN32
+    Sleep(ms);
+#else
+    usleep(ms*1000);
+#endif
 }
 

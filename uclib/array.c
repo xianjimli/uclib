@@ -1,15 +1,14 @@
 #include "array.h"
 
-array_t* array_create(bool_t deep_copy) {
+array_t* array_create() {
 	array_t* array = calloc(1, sizeof(array_t));
 	return_value_if_fail(array != NULL, NULL);
-
-    array->deep_copy = deep_copy;
 
 	return array;
 }
 
 #define MIN_PRE_ALLOCATE_NR 10
+
 static bool_t array_expand(array_t* array, uint32_t need) {
 	return_value_if_fail(array != NULL, FALSE); 
 
@@ -69,32 +68,16 @@ bool_t array_delete(array_t* array, uint32_t index){
 	return TRUE;
 }
 
-bool_t    array_delete_pointer(array_t* array, uint32_t index, destroy_t destroy) {
-	uint32_t i = 0;
-	value_t* value = NULL;
-	return_value_if_fail(array != NULL && array->size > index, FALSE); 
-    
-    value = array->data+index;
-    if(value->type == VALUE_TYPE_POINTER) {
-        void* ptr = value_pointer(value);
-        if(destroy) {
-            destroy(ptr);
-        }
-    }
-   
-    return array_delete(array, index);
-}
+value_t array_get(array_t* array, uint32_t index){
+	return_value_if_fail(array != NULL && index < array->size, value_null); 
 
-value_t* array_get(array_t* array, uint32_t index){
-	return_value_if_fail(array != NULL && index < array->size, FALSE); 
-
-	return array->data+index;
+	return array->data[index];
 }
 
 bool_t array_set(array_t* array, uint32_t index, value_t data){
 	return_value_if_fail(array != NULL && index < array->size, FALSE); 
 
-	value_copy(array->data+index,  &data, array->deep_copy);
+	value_copy(array->data+index,  &data, FALSE);
 
 	return TRUE;
 }
@@ -159,3 +142,4 @@ uint32_t  array_size(array_t* array) {
 
     return array->size;
 }
+

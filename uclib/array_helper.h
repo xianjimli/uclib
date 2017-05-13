@@ -1,3 +1,11 @@
+/* 
+ * 功能说明：
+ *     1.array_t类的helper函数。
+ *
+ * 修改历史：
+ *     1.2017-5-6 李先静 创建。
+ */
+ 
 #include "uclib/str.h"
 #include "uclib/obj.h"
 #include "uclib/array.h"
@@ -16,8 +24,8 @@ static inline bool_t array_append_str(array_t* thiz, str_t* str) {
 }
 
 static inline str_t* array_get_str(array_t* thiz, size_t index) {
-    value_t* v = array_get(thiz, index); 
-    return_value_if_fail(v != NULL, NULL);
+    value_t v = array_get(thiz, index); 
+    return_value_if_fail(!value_is_null(v), NULL);
 
     str_t* str = value_str(v);
 
@@ -33,8 +41,8 @@ static inline bool_t array_append_obj(array_t* thiz, obj_t* obj) {
 }
 
 static inline obj_t* array_get_obj(array_t* thiz, size_t index) {
-    value_t* v = array_get(thiz, index); 
-    return_value_if_fail(v != NULL, NULL);
+    value_t v = array_get(thiz, index); 
+    return_value_if_fail(!value_is_null(v), NULL);
 
     return value_obj(v);
 }
@@ -48,8 +56,8 @@ static inline bool_t array_append_int32(array_t* thiz, int32_t iv) {
 }
 
 static inline int32_t array_get_int32(array_t* thiz, size_t index) {
-    value_t* v = array_get(thiz, index); 
-    return_value_if_fail(v != NULL, 0);
+    value_t v = array_get(thiz, index); 
+    return_value_if_fail(!value_is_null(v), 0);
 
     return value_int32(v);
 }

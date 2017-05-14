@@ -8,7 +8,7 @@ TEST(map, basic) {
     uint32_t i = 0;
     uint32_t n = 100;
     str_t* key = str_create(NULL, 0, 0);
-    map_t* map = map_create(FALSE);
+    map_t* map = map_create();
 
     for(i = 0; i < n; i++) {
         str_from_int(key, i);

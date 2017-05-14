@@ -40,5 +40,6 @@ link_directories(${BIN_DIR})
 include_directories(${PROJECT_SOURCE_DIR})
 
 add_subdirectory(uclib)
+add_subdirectory(tools)
 add_subdirectory(tests)
 

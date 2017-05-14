@@ -171,14 +171,38 @@ TEST(str, trim) {
 }
 
 TEST(str, path1) {
-    str_t* s = str_normalize_path("/a/b/c\\d\\e", NULL);
-    str_t* s1 = str_normalize_path("/a/b/c\\d\\", NULL);
-    str_t* name = str_basename(s->str);
-    str_t* path = str_dirname(s->str);
-    ASSERT_EQ(str_equal(name, "e"), TRUE);
-    ASSERT_EQ(str_equal(path, s1->str), TRUE);
-    str_unref(name);
+    str_t* path = str_create(NULL, 0, 0);
+    str_t* filename = str_create(NULL, 0, 0);
+    str_t* basename = str_create(NULL, 0, 0);
+    str_t* extname = str_create(NULL, 0, 0);
+    str_t* dirname = str_create(NULL, 0, 0);
+
+    ASSERT_EQ(TRUE, str_normalize_path(filename, "/a/b/c\\d\\e.js", NULL));
+    ASSERT_EQ(TRUE, str_normalize_path(path, "/a/b/c\\d\\", NULL));
+
+    ASSERT_EQ(TRUE, str_basename(basename, filename->str, TRUE));
+    ASSERT_EQ(TRUE, str_dirname(dirname, filename->str));
+    ASSERT_EQ(TRUE, str_extname(extname, filename->str));
+
+    ASSERT_EQ(TRUE, str_equal(basename, "e.js"));
+    ASSERT_EQ(TRUE, str_equal(path, dirname->str)); 
+    ASSERT_EQ(TRUE, str_equal(extname, "js")); 
+
     str_unref(path);
-    str_unref(s);
-    str_unref(s1);
+    str_unref(filename);
+    str_unref(basename);
+    str_unref(extname);
+    str_unref(dirname);
 }
+
+TEST(str, static) {
+    str_t str;
+    char buff[256];
+    str_init_static(&str, buff, 0, sizeof(buff));
+
+    ASSERT_EQ(str_append(&str, "123", 3), TRUE);
+    ASSERT_EQ(str_append(&str, "abc", 3), TRUE);
+    ASSERT_EQ(str_equal(&str, "123abc"), TRUE);
+    ASSERT_EQ(str_to_int(&str), 123);
+}
+

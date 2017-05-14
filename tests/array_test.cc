@@ -6,7 +6,7 @@
 TEST(array, basic) {
     int32_t i = 0;
     int32_t n = 10000;
-    array_t* a = array_create(FALSE);
+    array_t* a = array_create();
 
     for(i = 0; i < n; i++) {
         ASSERT_EQ(TRUE, array_append_int32(a, i)); 
@@ -33,14 +33,13 @@ TEST(array, basic) {
 TEST(array, str) {
     int32_t i = 0;
     int32_t n = 10000;
-    array_t* a = array_create(TRUE);
-    str_t* str = str_create(NULL, 0, 0);
+    array_t* a = array_create();
 
     for(i = 0; i < n; i++) {
+        str_t* str = str_create(NULL, 0, 0);
         str_from_int(str, i);
         ASSERT_EQ(TRUE, array_append_str(a, str)); 
         str_t* s = array_get_str(a, i);
-        value_t* v = array_get(a, i);
         ASSERT_EQ(str_to_int(s), i); 
     }
 
@@ -50,7 +49,6 @@ TEST(array, str) {
     }
 
     ASSERT_EQ(a->size, 0);
-    str_unref(str);
 
     array_destroy(a);
 }

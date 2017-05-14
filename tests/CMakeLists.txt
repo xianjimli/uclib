@@ -13,6 +13,8 @@ set(APP_SRC
 	map_test.cc
 	event_test.cc
 	emitter_test.cc
+	thread_test.cc
+	obj_test.cc
 	)
 
 add_executable(runTest ${APP_SRC})

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='array_t'>/**
+</span> * @class array_t
+ * 动态数组
+ * 根据数据项的个数自动扩展数组的长度。
+ * 公共数据成员可以读取，但是不能修改。
+ */
+<span id='array_t-method-array_create'>/**
+</span> * @method array_create
+ * 创建动态数组。
+ *
+ * @return {array_t*} 数组对象。
+ */
+<span id='array_t-method-array_size'>/**
+</span> * @method array_size
+ * 获取数组中元素的个数。
+ * @param {array_t*} array 数组对象。
+ *
+ * @return {uint32_t} 元素的个数。
+ */
+<span id='array_t-method-array_get'>/**
+</span> * @method array_get
+ * 获取数组中指定索引的元素。
+ * @param {array_t*} array 数组对象。
+ * @param {uint32_t} index 索引。
+ *
+ * @return {value_t} 元素。
+ */
+<span id='array_t-method-array_set'>/**
+</span> * @method array_set
+ * 设置数组中指定索引的元素。
+ * @param {array_t*} array 数组对象。
+ * @param {uint32_t} index 索引。
+ * @param {value_t}  data  元素的值。
+ *
+ * @return {bool_t} 成功返回TRUE，失败返回FALSE。
+ */
+<span id='array_t-method-array_delete'>/**
+</span> * @method array_delete
+ * 删除数组中指定索引的元素。
+ * @param {array_t*} array 数组对象。
+ * @param {uint32_t} index 索引。
+ *
+ * @return {bool_t} 成功返回TRUE，失败返回FALSE。
+ */
+<span id='array_t-method-array_insert'>/**
+</span> * @method array_insert
+ * 在数组中指定索引的位置插入元素。
+ * @param {array_t*} array 数组对象。
+ * @param {uint32_t} index 索引。
+ * @param {value_t}  data  元素的值。
+ *
+ * @return {bool_t} 成功返回TRUE，失败返回FALSE。
+ */
+<span id='array_t-method-array_prepend'>/**
+</span> * @method array_prepend
+ * 在数组中前面插入元素。
+ * @param {array_t*} array 数组对象。
+ * @param {value_t}  data  元素的值。
+ *
+ * @return {bool_t} 成功返回TRUE，失败返回FALSE。
+ */
+<span id='array_t-method-array_append'>/**
+</span> * @method array_append
+ * 在数组中后面插入元素。
+ * @param {array_t*} array 数组对象。
+ * @param {value_t}  data  元素的值。
+ *
+ * @return {bool_t} 成功返回TRUE，失败返回FALSE。
+ */
+<span id='array_t-method-array_find'>/**
+</span> * @method array_find
+ * 在数组中查找指定的元素。
+ * @param {array_t*}   array 数组对象。
+ * @param {compare_t}  cmp   比较函数。
+ * @param {void*}      ctx   比较函数的上下文。
+ *
+ * @return {int} 成功返回元素的索引，失败返回-1。
+ */
+<span id='array_t-method-array_foreach'>/**
+</span> * @method array_foreach
+ * 遍历数组中的元素。
+ * @param {array_t*}   array 数组对象。
+ * @param {visit_t}    visit 遍历函数。
+ * @param {void*}      ctx   遍历函数的上下文。
+ *
+ * @return {bool_t} 成功返回TRUE，失败返回FALSE。
+ */
+<span id='array_t-method-array_foreach'>/**
+</span> * @method array_foreach
+ * 清除数组中的元素。
+ * @param {array_t*}   array 数组对象。
+ *
+ * @return {bool_t} 成功返回TRUE，失败返回FALSE。
+ */
+<span id='array_t-method-array_destroy'>/**
+</span> * @method array_destroy
+ * 销毁数组。
+ * @param {array_t*}   array 数组对象。
+ *
+ * @return {void} 无。
+ */
+</pre>
+</body>
+</html>

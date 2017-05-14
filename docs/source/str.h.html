@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='str_t'>/**
+</span> * @class str_t 
+ * 字符串对象。
+ */
+<span id='str_t-property-size'>/**
+</span>     * @property {uint32_t} size
+     * 字符串的长度。
+     */
+<span id='str_t-property-str'>/**
+</span>     * @property {char*} str
+     * 字符串的内容。
+     */
+<span id='str_t-method-str_create'>/**
+</span> * @method str_create
+ * 创建str对象。
+ *
+ * @return {str_t*} str对象。
+ */
+<span id='str_t-method-str_ref'>/**
+</span> * @method str_ref
+ * 增加引用计数。
+ * @param {str_t*} v str对象。
+ *
+ * @return {str_t*} str对象本身。
+ */
+<span id='str_t-method-str_unref'>/**
+</span> * @method str_unref
+ * 减少引用计数。
+ * @param {str_t*} v str对象。
+ *
+ * @return {str_t*} 引用计数仍然大于0返回str对象本身，否则返回NULL。
+ */
+</pre>
+</body>
+</html>

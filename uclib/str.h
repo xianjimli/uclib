@@ -392,7 +392,7 @@ bool_t str_tokenizer(str_t* s, str_on_token_t on_token, void* ctx,
 /**
  * @method str_ref
  * 增加引用计数。
- * @param {str_t*} v str对象。
+ * @param {str_t*} str str对象。
  *
  * @return {str_t*} str对象本身。
  */
@@ -401,7 +401,7 @@ str_t* str_ref(str_t* s);
 /**
  * @method str_unref
  * 减少引用计数。
- * @param {str_t*} v str对象。
+ * @param {str_t*} str str对象。
  *
  * @return {str_t*} 引用计数仍然大于0返回str对象本身，否则返回NULL。
  */

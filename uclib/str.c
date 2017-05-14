@@ -1,5 +1,13 @@
+/* 
+ * 功能说明：
+ *     1.str_t类的实现。
+ *
+ * 修改历史：
+ *     1.2017-5-6 李先静 创建。
+ */
 #include <ctype.h>
 #include <stdarg.h>
+
 #include "str.h"
 
 #define DEFAULT_CAPACITY 15
@@ -384,7 +392,7 @@ bool_t str_dirname(str_t* s, const char* filename) {
     if(offset < 0) {
         offset = 0;    
 
-        return str_create("/", 1, 1);
+        return str_set(s, "/", 1);
     }else{
         offset += 1;    
     }

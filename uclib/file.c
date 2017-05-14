@@ -56,9 +56,10 @@ bool_t file_read_text(const char* filename, str_t* s) {
     fp = fopen(filename, "rb");
     if(fp != NULL) {
         size_t len = file_get_size(filename);
-        if(str_extend(s, len)) {
+        if(str_extend(s, len+1)) {
             ret = 1 == fread(s->str, len, 1, fp);
             s->size = len;
+	    s->str[len] = '\0';
         }
         fclose(fp);
     }

@@ -230,6 +230,7 @@ bool_t str_replace(str_t* s, const char* str, const char* new_str) {
 bool_t str_append_char(str_t* s, char c) {
     return_value_if_fail(s != NULL && s->str != NULL, FALSE);
     return_value_if_fail(str_extend(s, s->size+1), FALSE);
+
     s->str[s->size++] = c;
     s->str[s->size] = '\0';
 
@@ -239,6 +240,7 @@ bool_t str_append_char(str_t* s, char c) {
 bool_t str_append(str_t* s, const char* str, uint32_t size) {
     uint32_t max_size = 0;
     return_value_if_fail(s != NULL && s->str != NULL && str != NULL, FALSE);
+    return_value_if_fail(str_extend(s, s->size+1), FALSE);
     
     max_size = strlen(str);
     if(size > max_size) {
@@ -257,7 +259,7 @@ bool_t str_append_f(str_t* s, const char* format, ...) {
     char* p = NULL;
     va_list args;
     return_value_if_fail(s != NULL && s->str != NULL && format != NULL, FALSE);
-    return_value_if_fail(str_extend(s, s->size + 32), FALSE); 
+    return_value_if_fail(str_extend(s, s->size + 256), FALSE); 
 
     p = s->str + s->size;
     len = s->capacity - s->size - 1;

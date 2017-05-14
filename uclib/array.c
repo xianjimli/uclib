@@ -1,3 +1,10 @@
+/* 
+ * 功能说明：
+ *     1.array_t类的实现。
+ *
+ * 修改历史：
+ *     1.2017-5-6 李先静 创建。
+ */
 #include "array.h"
 
 array_t* array_create() {

@@ -1,4 +1,5 @@
 #include <ctype.h>
+#include <stdarg.h>
 #include "str.h"
 
 #define DEFAULT_CAPACITY 15
@@ -159,9 +160,12 @@ bool_t str_extend(str_t* s, uint32_t capacity) {
     if(s->capacity > capacity) {
         return TRUE;
     }else{
+        return_value_if_fail(s->ref > 0, FALSE);
+
         char* str = (char*)realloc(s->str, capacity+1);
         if(str != NULL) {
             s->str = str;
+            s->capacity = capacity+1;
         }
 
         return str != NULL;
@@ -240,6 +244,27 @@ bool_t str_append(str_t* s, const char* str, uint32_t size) {
     return TRUE;
 }
 
+bool_t str_append_f(str_t* s, const char* format, ...) {
+    int len = 0;
+    char* p = NULL;
+    va_list args;
+    return_value_if_fail(s != NULL && s->str != NULL && format != NULL, FALSE);
+    return_value_if_fail(str_extend(s, s->size + 32), FALSE); 
+
+    p = s->str + s->size;
+    len = s->capacity - s->size - 1;
+    va_start (args, format);
+    len = vsnprintf (p, len, format, args);
+    va_end (args);
+
+    if(len > 0) {
+        s->size += len;
+        s->str[s->size] = '\0';
+    }
+
+    return len > 0;
+}
+
 bool_t str_set(str_t* s, const char* str, uint32_t size) {
     return_value_if_fail(s != NULL && s->str != NULL && str != NULL, FALSE);
 
@@ -310,11 +335,11 @@ static int32_t str_last_slash(const char* str) {
     return -1;
 }
 
-str_t* str_basename(const char* filename) {
+bool_t str_basename(str_t* s, const char* filename, bool_t include_extname) {
     uint32_t len = 0;
     int32_t offset = 0;
     const char* p = NULL;
-    return_value_if_fail(filename != NULL && *filename, NULL);
+    return_value_if_fail(s != NULL && s->str != NULL && filename != NULL && *filename, FALSE);
 
     offset = str_last_slash(filename);
     if(offset < 0) {
@@ -324,12 +349,36 @@ str_t* str_basename(const char* filename) {
     p = filename + offset + 1;
     len = strlen(p);
 
-    return str_create(p, len, len);
+    if(str_set(s, p, len)) {
+        if(!include_extname) {
+            char* ext = strrchr(s->str, '.');
+            if(ext) {
+                *ext = '\0';
+            }
+        }
+
+        return TRUE;
+    }
+
+    return FALSE;
 }
 
-str_t* str_dirname(const char* filename) {
+bool_t str_extname(str_t* s, const char* filename) {
+    const char* p = NULL;
+    return_value_if_fail(s != NULL && s->str != NULL && filename != NULL && *filename, FALSE);
+
+    p = strrchr(filename, '.');
+    if(p != NULL) {
+        p++;
+        return str_set(s, p, strlen(p));
+    }else{
+        return str_set(s, "", 0);
+    }
+}
+
+bool_t str_dirname(str_t* s, const char* filename) {
     int32_t offset = 0;
-    return_value_if_fail(filename != NULL && *filename, NULL);
+    return_value_if_fail(s != NULL && s->str != NULL && filename != NULL && *filename, FALSE);
 
     offset = str_last_slash(filename);
     if(offset < 0) {
@@ -340,18 +389,16 @@ str_t* str_dirname(const char* filename) {
         offset += 1;    
     }
 
-    return str_create(filename, offset, 0);
+    return str_set(s, filename, offset);
 }
 
-str_t* str_normalize_path(const char* filename, const char* cwd) {
+bool_t str_normalize_path(str_t* s, const char* filename, const char* cwd) {
     uint32_t i = 0;
     uint32_t n = 0;
     char* p = NULL;
-    str_t* s = NULL;
-    return_value_if_fail(filename != NULL, NULL);
+    return_value_if_fail(s != NULL && s->str != NULL && filename != NULL, FALSE);
     
-    s = str_create(filename, strlen(filename), 0);
-    return_value_if_fail(s != NULL && s->str != NULL, NULL);
+    return_value_if_fail(str_set(s, filename, strlen(filename)), FALSE);
 
     for(n = s->size, p = s->str, i = 0; i < n; i++) {
         if(p[i] == '/' || p[i] == '\\') {
@@ -365,7 +412,7 @@ str_t* str_normalize_path(const char* filename, const char* cwd) {
          */
     }
 
-    return s;
+    return TRUE;
 }
 
 bool_t str_to_lower(str_t* s) {
@@ -419,13 +466,14 @@ str_t* str_unref(str_t* s) {
     return s;
 }
 
-str_t* str_init_static(str_t* s, const char* str) {
-    return_value_if_fail(s != NULL && str != NULL, NULL);
+str_t* str_init_static(str_t* s, char* str, uint32_t size, uint32_t capacity) {
+    return_value_if_fail(s != NULL && str != NULL && size < capacity, NULL);
 
     memset(s, 0x00, sizeof(str_t));
-    s->size = strlen(str);
-    s->str = (char*)str;
-    s->capacity = s->size;
+    s->ref = -1;
+    s->str = str;
+    s->size = size;
+    s->capacity = capacity;
 
     return s;
 }
@@ -502,7 +550,6 @@ bool_t str_tokenizer(str_t* s, str_on_token_t on_token, void* ctx,
     }state = STATE_OUT;
 
     uint32_t i = 0;
-    uint32_t len = 0;
     uint32_t start = 0;
     uint32_t n = s->size;
     const char* p = s->str;

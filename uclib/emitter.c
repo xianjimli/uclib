@@ -103,9 +103,9 @@ static bool_t emit(event_t* event, value_t* value) {
 bool_t emitter_emit(emitter_t* emitter, event_t* event) {
     value_t value;
     array_t* arr = NULL;
-    return_value_if_fail(emitter != NULL && event != NULL && event->name != NULL, FALSE);
+    return_value_if_fail(emitter != NULL && event != NULL && event->type != NULL, FALSE);
     
-    value = map_get(emitter->listeners, event->name->str);
+    value = map_get(emitter->listeners, event->type->str);
     if(!value_is_null(value)) {
         arr = value_pointer(value);
         array_foreach(arr, (visit_t)emit, event);

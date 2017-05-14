@@ -43,9 +43,17 @@ bool_t   event_set_type(event_t* event, const char* type) {
 }
 
 bool_t   event_set_param(event_t* event, const char* name, const char* value) {
+    bool_t ret = FALSE;
+    str_t* str = NULL;
     return_value_if_fail(event != NULL && name != NULL && value != NULL, FALSE);
 
-    return map_set(event->params, name, value_from_str(str_create(value, strlen(value), 0))); 
+    str = str_create(value, strlen(value), 0);
+    return_value_if_fail(str != NULL, FALSE);
+
+    ret = map_set(event->params, name, value_from_str(str)); 
+    str_unref(str);
+
+    return ret;
 }
 
 const char* event_get_param(event_t* event, const char* name) {

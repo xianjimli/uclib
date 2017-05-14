@@ -41,6 +41,7 @@ TEST(array, str) {
         ASSERT_EQ(TRUE, array_append_str(a, str)); 
         str_t* s = array_get_str(a, i);
         ASSERT_EQ(str_to_int(s), i); 
+	str_unref(str);
     }
 
     for(i = 0; i < n; i++) {

@@ -173,7 +173,7 @@ bool_t str_extend(str_t* s, uint32_t capacity) {
         char* str = (char*)realloc(s->str, capacity+1);
         if(str != NULL) {
             s->str = str;
-            s->capacity = capacity+1;
+            s->capacity = capacity;
         }
 
         return str != NULL;
@@ -240,12 +240,13 @@ bool_t str_append_char(str_t* s, char c) {
 bool_t str_append(str_t* s, const char* str, uint32_t size) {
     uint32_t max_size = 0;
     return_value_if_fail(s != NULL && s->str != NULL && str != NULL, FALSE);
-    return_value_if_fail(str_extend(s, s->size+1), FALSE);
     
     max_size = strlen(str);
     if(size > max_size) {
         size = max_size;
     }
+
+    return_value_if_fail(str_extend(s, s->size+size+1), FALSE);
 
     memcpy(s->str+s->size, str, size);
     s->size += size;

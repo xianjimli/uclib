@@ -8,14 +8,14 @@ if(APPLE)
 	list(APPEND SYS_LIBS -lm -lpthread)
     ADD_DEFINITIONS(
         -DMACOS -Wall -g -Wunused-variable -Wunused-parameter -Wunused-function -Wunused
-        -Wno-deprecated -Woverloaded-virtual -Wwrite-strings
+        -Wno-deprecated  -Wwrite-strings
     )
 elseif(UNIX)
     # If unix
 	list(APPEND SYS_LIBS -lm -lpthread)
     ADD_DEFINITIONS(
         -DUNIX -g -fPIC -Wunused-variable -Wunused-parameter -Wunused-function -Wunused
-        -Wno-deprecated -Woverloaded-virtual -Wwrite-strings
+        -Wno-deprecated  -Wwrite-strings
     )
 else()
     # If windows

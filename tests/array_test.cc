@@ -5,7 +5,7 @@
 
 TEST(array, basic) {
     int32_t i = 0;
-    int32_t n = 10000;
+    int32_t n = 1000;
     array_t* a = array_create();
 
     for(i = 0; i < n; i++) {
@@ -32,7 +32,7 @@ TEST(array, basic) {
 
 TEST(array, str) {
     int32_t i = 0;
-    int32_t n = 10000;
+    int32_t n = 1000;
     array_t* a = array_create();
 
     for(i = 0; i < n; i++) {

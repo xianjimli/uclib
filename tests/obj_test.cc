@@ -57,7 +57,7 @@ TEST(obj, basic) {
     my_obj_t* obj = my_obj_create();
     
     ASSERT_EQ(TRUE, obj_set_prop(&obj->obj, "name", value_from_pointer((void*)"jim", NULL)));
-    ASSERT_EQ(strcmp("jim", (char*)value_pointer(obj_prop(&obj->obj, "name"))) == 0, TRUE);
+    ASSERT_EQ(strcmp("jim", (const char*)value_pointer(obj_prop(&obj->obj, "name"))) == 0, true);
 
     ASSERT_EQ(TRUE, obj_set_prop(&obj->obj, "age", value_from_int32(100)));
     ASSERT_EQ(100, value_int32(obj_prop(&obj->obj, "age")));

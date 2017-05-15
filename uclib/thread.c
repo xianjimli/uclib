@@ -43,18 +43,23 @@ static void* entry(thread_t* thread) {
     return NULL;
 }
 
-bool_t thread_start(thread_t* thread) {
-    return_value_if_fail(thread != NULL, FALSE);
-
 #ifdef WIN32
 #ifndef _beginthread_proc_type
 typedef void (*_beginthread_proc_type)(void* args);
-#endif//_beginthread_proc_type
+#endif
+#endif
 
-    uint32_t stack_size = 1024 * 1024;
+bool_t thread_start(thread_t* thread) {
+#ifdef WIN32
+	uint32_t stack_size = 1024 * 1024;
+    return_value_if_fail(thread != NULL, FALSE);
+
+    stack_size = 1024 * 1024;
     thread->thread = (HANDLE)_beginthread((_beginthread_proc_type)entry, stack_size, thread);
     thread->running = thread->thread != NULL;
 #else
+    return_value_if_fail(thread != NULL, FALSE);
+
     int ret = pthread_create(&(thread->thread), NULL, (void *(*)(void *))entry, thread);
     thread->running = ret == 0;
 #endif

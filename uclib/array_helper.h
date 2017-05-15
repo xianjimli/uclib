@@ -15,7 +15,7 @@
 
 BEGIN_C_DECLS
 
-static inline bool_t array_append_str(array_t* thiz, str_t* str) {
+static INLINE bool_t array_append_str(array_t* thiz, str_t* str) {
     value_t v;
     return_value_if_fail(thiz != NULL && str != NULL, FALSE);
     value_set_str(&v, str);
@@ -23,7 +23,7 @@ static inline bool_t array_append_str(array_t* thiz, str_t* str) {
     return array_append(thiz, v);
 }
 
-static inline str_t* array_get_str(array_t* thiz, size_t index) {
+static INLINE str_t* array_get_str(array_t* thiz, size_t index) {
     value_t v = array_get(thiz, index); 
     return_value_if_fail(!value_is_null(v), NULL);
 
@@ -32,7 +32,7 @@ static inline str_t* array_get_str(array_t* thiz, size_t index) {
     return str;
 }
 
-static inline bool_t array_append_obj(array_t* thiz, obj_t* obj) {
+static INLINE bool_t array_append_obj(array_t* thiz, obj_t* obj) {
     value_t v;
     return_value_if_fail(thiz != NULL && obj != NULL, FALSE);
     value_set_obj(&v, obj);
@@ -40,14 +40,14 @@ static inline bool_t array_append_obj(array_t* thiz, obj_t* obj) {
     return array_append(thiz, v);
 }
 
-static inline obj_t* array_get_obj(array_t* thiz, size_t index) {
+static INLINE obj_t* array_get_obj(array_t* thiz, size_t index) {
     value_t v = array_get(thiz, index); 
     return_value_if_fail(!value_is_null(v), NULL);
 
     return value_obj(v);
 }
 
-static inline bool_t array_append_int32(array_t* thiz, int32_t iv) {
+static INLINE bool_t array_append_int32(array_t* thiz, int32_t iv) {
     value_t v;
     return_value_if_fail(thiz != NULL, FALSE);
     value_set_int32(&v, iv);
@@ -55,7 +55,7 @@ static inline bool_t array_append_int32(array_t* thiz, int32_t iv) {
     return array_append(thiz, v);
 }
 
-static inline int32_t array_get_int32(array_t* thiz, size_t index) {
+static INLINE int32_t array_get_int32(array_t* thiz, size_t index) {
     value_t v = array_get(thiz, index); 
     return_value_if_fail(!value_is_null(v), 0);
 

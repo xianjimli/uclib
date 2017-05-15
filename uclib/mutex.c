@@ -38,7 +38,7 @@ bool_t mutex_lock(mutex_t* mutex) {
     return_value_if_fail(mutex != NULL && mutex->created, FALSE);
 
 #ifdef WIN32
-    ::WaitForSingleObject(mutex->mutex, INFINITE);
+    WaitForSingleObject(mutex->mutex, INFINITE);
 #else
     pthread_mutex_lock(&(mutex->mutex));
 #endif

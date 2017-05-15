@@ -168,9 +168,10 @@ bool_t str_extend(str_t* s, uint32_t capacity) {
     if(s->capacity > capacity) {
         return TRUE;
     }else{
+		char* str = NULL;
         return_value_if_fail(s->ref > 0, FALSE);
 
-        char* str = (char*)realloc(s->str, capacity+1);
+        str = (char*)realloc(s->str, capacity+1);
         if(str != NULL) {
             s->str = str;
             s->capacity = capacity;

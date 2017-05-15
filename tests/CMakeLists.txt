@@ -20,4 +20,10 @@ set(APP_SRC
 add_executable(runTest ${APP_SRC})
 target_link_libraries(runTest uclib ${SYS_LIBS}) 
 
+if(WIN32)
+set_target_properties(runTest
+    PROPERTIES
+    COMPILE_FLAGS /wd"4819"
+)
+endif()
 

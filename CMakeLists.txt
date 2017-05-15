@@ -7,14 +7,14 @@ if(APPLE)
     # If OSX
 	list(APPEND SYS_LIBS -lm -lpthread)
     ADD_DEFINITIONS(
-        -DMACOS -Wall -g -Wunused-variable -Wunused-parameter -Wunused-function -Wunused
+        -DMACOS -Wall -g -Wunused-variable -Wunused-parameter  -Wunused
         -Wno-deprecated  -Wwrite-strings
     )
 elseif(UNIX)
     # If unix
 	list(APPEND SYS_LIBS -lm -lpthread)
     ADD_DEFINITIONS(
-        -DUNIX -g -fPIC -Wunused-variable -Wunused-parameter -Wunused-function -Wunused
+        -DUNIX -g -fPIC -Wunused-variable -Wunused-parameter  -Wunused
         -Wno-deprecated  -Wwrite-strings
     )
 else()

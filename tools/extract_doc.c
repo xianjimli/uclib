@@ -22,16 +22,22 @@ static void extract(const char* input_filename, const char* output_filename) {
 }
 
 int main(int argc, char* argv[]) {
+    const char* input_filename = NULL;
+    const char* output_dir = NULL;
+    
+    str_t* output_filename = NULL;
+    str_t* basename = NULL;
+
     if(argc < 3) {
         printf("Usage: %s input-file output-dir\n", argv[0]);
         return 0;
     }
 
-    const char* input_filename = argv[1];
-    const char* output_dir = argv[2];
+    input_filename = argv[1];
+    output_dir = argv[2];
     
-    str_t* output_filename = str_create(NULL, 0, 512);
-    str_t* basename = str_create(NULL, 0, 0);
+    output_filename = str_create(NULL, 0, 512);
+    basename = str_create(NULL, 0, 0);
 
     str_basename(basename, input_filename, FALSE);
     str_append_f(output_filename, "%s/%s.js", output_dir, basename->str);

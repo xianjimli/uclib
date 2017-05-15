@@ -147,7 +147,7 @@ TEST(str, to_from_int) {
 
 TEST(str, to_from_float) {
     str_t* s = str_create(NULL, 0xff, 0xff);
-    ASSERT_EQ(str_from_float(s, 1.23), TRUE);
+    ASSERT_EQ(str_from_float(s, (float)1.23), TRUE);
     ASSERT_LE(str_to_float(s) - 1.23, 0.00001);
     str_unref(s);
 }

@@ -11,7 +11,6 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include <stdint.h>
 #include <string.h>
 #include <assert.h>
 
@@ -63,12 +62,19 @@ typedef __uint32_t uint32_t;
 #   define unlink    _unlink
 #   define snprintf  _snprintf
 #   define mkdir     _mkdir
+#ifndef INLINE
+#   define INLINE
+#endif
 #else
 #   define socket_t int
 #   include <unistd.h>
+#   include <stdint.h>
 #   include <sys/time.h>
 #   define DIRECTORY_SEPARATOR "/"
 #   define DIRECTORY_SEPARATOR_CHAR '/'
+#ifndef INLINE
+#   define INLINE inline
+#endif
 #endif/*WIN32*/
 
 #ifndef MAX_PATH
@@ -83,9 +89,15 @@ typedef __uint32_t uint32_t;
 #   define END_C_DECLS
 #endif
 
-#ifndef TRUE
+#ifndef bool_t
 #   define bool_t int
+#endif
+
+#ifndef TRUE
 #   define TRUE   1
+#endif
+
+#ifndef FALSE
 #   define FALSE  0
 #endif
 

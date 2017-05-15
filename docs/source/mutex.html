@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='mutex_t'>/**
+</span> * @class mutex_t
+ * 互斥锁。
+ */
+<span id='mutex_t-method-mutex_create'>/**
+</span> * @method mutex_create
+ * 创建mutex。
+ *
+ * @return {mutex_t*} mutex对象。
+ */
+<span id='mutex_t-method-mutex_lock'>/**
+</span> * @method mutex_lock
+ * 加锁。
+ * @param {mutex_t*}    mutex mutex对象。
+ *
+ * @return {bool_t} 成功返回TRUE，失败返回FALSE。
+ */
+<span id='mutex_t-method-mutex_unlock'>/**
+</span> * @method mutex_unlock
+ * 解锁。
+ * @param {mutex_t*}    mutex mutex对象。
+ *
+ * @return {bool_t} 成功返回TRUE，失败返回FALSE。
+ */
+<span id='mutex_t-method-mutex_destroy'>/**
+</span> * @method mutex_destroy
+ * 销毁mutex对象。
+ * @param {mutex_t*}    mutex mutex对象。
+ *
+ * @return {void} 无。
+ */
+</pre>
+</body>
+</html>

@@ -15,9 +15,7 @@ BEGIN_C_DECLS
 
 /**
  * @class array_t
- * 动态数组
- * 根据数据项的个数自动扩展数组的长度。
- * 公共数据成员可以读取，但是不能修改。
+ * 动态数组，根据数据项的个数自动扩展数组的长度。
  */
 typedef struct _array_t {
 	value_t* data;

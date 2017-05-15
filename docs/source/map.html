@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='map_t'>/**
+</span> * @class map_t
+ * 存放key/value映射的容器，方便通过key查找value。
+ */
+<span id='map_t-method-map_create'>/**
+</span> * @method map_create
+ * 创建map。
+ *
+ * @return {map_t*} map对象。
+ */
+<span id='map_t-method-map_size'>/**
+</span> * @method map_size
+ * 获取map中元素的个数。
+ * @param {map_t*} map map对象。
+ *
+ * @return {uint32_t} 元素的个数。
+ */
+<span id='map_t-method-map_get'>/**
+</span> * @method map_get
+ * 获取指定key的value。
+ * @param {map_t*}      map map对象。
+ * @param {const char*} key 键名。
+ *
+ * @return {value_t} 值。
+ */
+<span id='map_t-method-map_set'>/**
+</span> * @method map_set
+ * 设置指定key的value。
+ * @param {map_t*}      map map对象。
+ * @param {const char*} key 键名。
+ * @param {value_t}     value 值。
+ *
+ * @return {bool_t} 成功返回TRUE，失败返回FALSE。
+ */
+<span id='map_t-method-map_delete'>/**
+</span> * @method map_delete
+ * 删除指定key。
+ * @param {map_t*}      map map对象。
+ * @param {const char*} key 键名。
+ *
+ * @return {bool_t} 成功返回TRUE，失败返回FALSE。
+ */
+<span id='map_t-method-map_foreach'>/**
+</span> * @method map_foreach
+ * 遍历所有的key/value。
+ * @param {map_t*}     map   map对象。
+ * @param {visit_t}    visit 遍历函数。
+ * @param {void*}      ctx   遍历函数的上下文。
+ *
+ * @return {bool_t} 成功返回TRUE，失败返回FALSE。
+ */
+<span id='map_t-method-map_clear'>/**
+</span> * @method map_clear
+ * 清除所有元素。
+ * @param {map_t*}     map   map对象。
+ *
+ * @return {bool_t} 成功返回TRUE，失败返回FALSE。
+ */
+<span id='map_t-method-map_destroy'>/**
+</span> * @method map_destroy
+ * 销毁map对象。
+ * @param {map_t*}     map   map对象。
+ *
+ * @return {void} 无。
+ */
+</pre>
+</body>
+</html>

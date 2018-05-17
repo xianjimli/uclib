@@ -1,4 +1,4 @@
-/* 
+/*
  * 功能说明：
  *     1.str_t类的声明。
  *
@@ -13,23 +13,23 @@
 BEGIN_C_DECLS
 
 /**
- * @class str_t 
+ * @class str_t
  * 字符串对象。
  */
-typedef struct _str_t{
-   uint16_t ref;
-    /**
-     * @property {uint32_t} size
-     * 字符串的长度。
-     */
-   uint32_t size;
-   uint32_t capacity;
-    /**
-     * @property {char*} str
-     * 字符串的内容。
-     */
-   char* str;
-}str_t;
+typedef struct _str_t {
+  uint16_t ref;
+  /**
+   * @property {uint32_t} size
+   * 字符串的长度。
+   */
+  uint32_t size;
+  uint32_t capacity;
+  /**
+   * @property {char*} str
+   * 字符串的内容。
+   */
+  char* str;
+} str_t;
 
 /**
  * @method str_create
@@ -43,7 +43,7 @@ str_t* str_create(const char* str, uint32_t size, uint32_t capacity);
  * @method str_sub
  * 截取一个子字符串。
  * @param {str_t*}     s        字符串对象。
- * @param {uint32_t}   start    偏移量 
+ * @param {uint32_t}   start    偏移量
  * @param {uint32_t}   size     子串长度。
  *
  * @return {str_t*} 成功返回子字符串对象，失败返回NULL。
@@ -107,7 +107,7 @@ bool_t str_end_with(str_t* s, const char* str);
  *
  * @return {int} 小于返回负数，等于返回0，大于返回正数。
  */
-int    str_cmp(str_t* s, const char* str);
+int str_cmp(str_t* s, const char* str);
 
 /**
  * @method str_ncmp
@@ -118,8 +118,7 @@ int    str_cmp(str_t* s, const char* str);
  *
  * @return {int} 小于返回负数，等于返回0，大于返回正数。
  */
-int    str_ncmp(str_t* s, const char* str, uint32_t size);
-
+int str_ncmp(str_t* s, const char* str, uint32_t size);
 
 /**
  * @method str_end_with
@@ -139,7 +138,7 @@ bool_t str_equal(str_t* s, const char* str);
  *
  * @return {int32_t} 找到返回对应的偏移量，没找到返回-1。
  */
-int32_t   str_index_of_c(str_t* s, char c);
+int32_t str_index_of_c(str_t* s, char c);
 
 /**
  * @method str_index_of_c
@@ -149,7 +148,7 @@ int32_t   str_index_of_c(str_t* s, char c);
  *
  * @return {int32_t} 找到返回对应的偏移量，没找到返回-1。
  */
-int32_t   str_last_index_of_c(str_t* s, char c);
+int32_t str_last_index_of_c(str_t* s, char c);
 
 /**
  * @method str_index_of
@@ -159,7 +158,7 @@ int32_t   str_last_index_of_c(str_t* s, char c);
  *
  * @return {int32_t} 找到返回对应的偏移量，没找到返回-1。
  */
-int32_t   str_index_of(str_t* s, const char* str);
+int32_t str_index_of(str_t* s, const char* str);
 
 /**
  * @method str_replace_c
@@ -271,7 +270,7 @@ int32_t str_to_int(str_t* s);
  *
  * @return {float} 成功返回对应的浮点数，失败返回0。
  */
-float   str_to_float(str_t* s);
+float str_to_float(str_t* s);
 
 /**
  * @method str_to_double
@@ -280,7 +279,7 @@ float   str_to_float(str_t* s);
  *
  * @return {float} 成功返回对应的双精度浮点数，失败返回0。
  */
-double  str_to_double(str_t* s);
+double str_to_double(str_t* s);
 
 /**
  * @method str_from_int
@@ -386,8 +385,8 @@ typedef void (*str_on_token_t)(void* ctx, str_t* token);
  *
  * @return {bool_t} 成功返回TRUE，失败返回FALSE。
  */
-bool_t str_tokenizer(str_t* s, str_on_token_t on_token, void* ctx, 
-        const char* delim, const char* ctokens); 
+bool_t str_tokenizer(str_t* s, str_on_token_t on_token, void* ctx, const char* delim,
+                     const char* ctokens);
 
 /**
  * @method str_ref
@@ -414,5 +413,4 @@ str_t* str_init_static(str_t* s, char* str, uint32_t size, uint32_t capacity);
 
 END_C_DECLS
 
-#endif/*STR_H*/
-
+#endif /*STR_H*/

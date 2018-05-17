@@ -1,4 +1,4 @@
-/* 
+/*
  * 功能说明：
  *     1.文件类工具函数。
  *
@@ -70,4 +70,4 @@ bool_t file_write_text(const char* filename, const char* content);
 
 END_C_DECLS
 
-#endif/*FILE_H*/
+#endif /*FILE_H*/

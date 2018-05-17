@@ -1,11 +1,11 @@
-/* 
+/*
  * 功能说明：
  *     1.array_t类的声明。
  *
  * 修改历史：
  *     1.2017-5-6 李先静 创建。
  */
- 
+
 #include "uclib/value.h"
 
 #ifndef DARRAY_H
@@ -18,11 +18,11 @@ BEGIN_C_DECLS
  * 动态数组，根据数据项的个数自动扩展数组的长度。
  */
 typedef struct _array_t {
-	value_t* data;
-	uint32_t size;
-    
-	uint32_t capacity;
-}array_t;
+  value_t* data;
+  uint32_t size;
+
+  uint32_t capacity;
+} array_t;
 
 /**
  * @method array_create
@@ -39,7 +39,7 @@ array_t* array_create();
  *
  * @return {uint32_t} 元素的个数。
  */
-uint32_t  array_size(array_t* array);
+uint32_t array_size(array_t* array);
 
 /**
  * @method array_get
@@ -49,7 +49,7 @@ uint32_t  array_size(array_t* array);
  *
  * @return {value_t} 元素。
  */
-value_t   array_get(array_t* array, uint32_t index);
+value_t array_get(array_t* array, uint32_t index);
 
 /**
  * @method array_set
@@ -60,7 +60,7 @@ value_t   array_get(array_t* array, uint32_t index);
  *
  * @return {bool_t} 成功返回TRUE，失败返回FALSE。
  */
-bool_t    array_set(array_t* array, uint32_t index, value_t data);
+bool_t array_set(array_t* array, uint32_t index, value_t data);
 
 /**
  * @method array_delete
@@ -70,7 +70,7 @@ bool_t    array_set(array_t* array, uint32_t index, value_t data);
  *
  * @return {bool_t} 成功返回TRUE，失败返回FALSE。
  */
-bool_t    array_delete(array_t* array, uint32_t index);
+bool_t array_delete(array_t* array, uint32_t index);
 
 /**
  * @method array_insert
@@ -81,7 +81,7 @@ bool_t    array_delete(array_t* array, uint32_t index);
  *
  * @return {bool_t} 成功返回TRUE，失败返回FALSE。
  */
-bool_t    array_insert(array_t* array, uint32_t index, value_t data);
+bool_t array_insert(array_t* array, uint32_t index, value_t data);
 
 /**
  * @method array_prepend
@@ -91,7 +91,7 @@ bool_t    array_insert(array_t* array, uint32_t index, value_t data);
  *
  * @return {bool_t} 成功返回TRUE，失败返回FALSE。
  */
-bool_t    array_prepend(array_t* array, value_t data);
+bool_t array_prepend(array_t* array, value_t data);
 
 /**
  * @method array_append
@@ -101,7 +101,7 @@ bool_t    array_prepend(array_t* array, value_t data);
  *
  * @return {bool_t} 成功返回TRUE，失败返回FALSE。
  */
-bool_t    array_append(array_t* array, value_t data);
+bool_t array_append(array_t* array, value_t data);
 
 /**
  * @method array_find
@@ -112,7 +112,7 @@ bool_t    array_append(array_t* array, value_t data);
  *
  * @return {int} 成功返回元素的索引，失败返回-1。
  */
-int       array_find(array_t* array, compare_t cmp, void* ctx);
+int array_find(array_t* array, compare_t cmp, void* ctx);
 
 /**
  * @method array_foreach
@@ -123,7 +123,7 @@ int       array_find(array_t* array, compare_t cmp, void* ctx);
  *
  * @return {bool_t} 成功返回TRUE，失败返回FALSE。
  */
-bool_t    array_foreach(array_t* array, visit_t visit, void* ctx);
+bool_t array_foreach(array_t* array, visit_t visit, void* ctx);
 
 /**
  * @method array_foreach
@@ -132,7 +132,7 @@ bool_t    array_foreach(array_t* array, visit_t visit, void* ctx);
  *
  * @return {bool_t} 成功返回TRUE，失败返回FALSE。
  */
-bool_t    array_clear(array_t* array);
+bool_t array_clear(array_t* array);
 
 /**
  * @method array_destroy
@@ -145,5 +145,4 @@ void array_destroy(array_t* array);
 
 END_C_DECLS
 
-#endif/*DARRAY_H*/
-
+#endif /*DARRAY_H*/

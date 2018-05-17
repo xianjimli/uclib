@@ -1,4 +1,4 @@
-/* 
+/*
  * 功能说明：
  *     1.emitter_t类的声明。
  *
@@ -10,7 +10,7 @@
 #include "uclib/event.h"
 
 #ifndef EMITTER_H
-#define EMITTER_H 
+#define EMITTER_H
 
 BEGIN_C_DECLS
 
@@ -19,8 +19,8 @@ BEGIN_C_DECLS
  * 事件发射器。相当于观察者模式中被观察的对象，提供事件注册、注销和分发功能。
  */
 typedef struct _emitter_t {
-    map_t* listeners;
-}emitter_t;
+  map_t* listeners;
+} emitter_t;
 
 typedef bool_t (*on_event_t)(void* ctx, event_t* event);
 
@@ -77,5 +77,4 @@ void emitter_destroy(emitter_t* emitter);
 
 END_C_DECLS
 
-#endif/*EMITTER_H*/
-
+#endif /*EMITTER_H*/

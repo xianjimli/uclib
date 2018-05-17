@@ -1,15 +1,15 @@
-/* 
+/*
  * 功能说明：
  *     1.value_t类的声明。
  *
  * 修改历史：
  *     1.2017-5-6 李先静 创建。
  */
- 
+
 #include "uclib/types_def.h"
 
 #ifndef VALUE_H
-#define VALUE_H 
+#define VALUE_H
 
 struct _obj_t;
 struct _str_t;
@@ -18,45 +18,45 @@ BEGIN_C_DECLS
 
 /*数据类型定义*/
 typedef enum _value_type_t {
-	VALUE_TYPE_INVALID = 0,
-	VALUE_TYPE_INT8,
-	VALUE_TYPE_UINT8,
-	VALUE_TYPE_INT16,
-	VALUE_TYPE_UINT16,
-	VALUE_TYPE_INT32,
-	VALUE_TYPE_UINT32,
-	VALUE_TYPE_INT64,
-	VALUE_TYPE_UINT64,
-	VALUE_TYPE_POINTER,
-	VALUE_TYPE_FLOAT32,
-	VALUE_TYPE_FLOAT64,
-	VALUE_TYPE_STRING,
-	VALUE_TYPE_OBJECT
-}value_type_t;
+  VALUE_TYPE_INVALID = 0,
+  VALUE_TYPE_INT8,
+  VALUE_TYPE_UINT8,
+  VALUE_TYPE_INT16,
+  VALUE_TYPE_UINT16,
+  VALUE_TYPE_INT32,
+  VALUE_TYPE_UINT32,
+  VALUE_TYPE_INT64,
+  VALUE_TYPE_UINT64,
+  VALUE_TYPE_POINTER,
+  VALUE_TYPE_FLOAT32,
+  VALUE_TYPE_FLOAT64,
+  VALUE_TYPE_STRING,
+  VALUE_TYPE_OBJECT
+} value_type_t;
 
 /**
  * @class value_t
  * 一个通用数据类型，用来存放整数、浮点数、obj_t、str_t和其它对象。
  */
 typedef struct _value_t {
-	uint32_t type;
-	union {
-		int8_t i8;       
-		uint8_t u8;
-		int16_t i16;
-		uint16_t u16;
-		int32_t i32;
-		uint32_t u32;
-		int64_t i64;
-		uint64_t u64;
-		float f32;
-		double f64;
+  uint32_t type;
+  union {
+    int8_t i8;
+    uint8_t u8;
+    int16_t i16;
+    uint16_t u16;
+    int32_t i32;
+    uint32_t u32;
+    int64_t i64;
+    uint64_t u64;
+    float f32;
+    double f64;
 
-		pointer_t ptr;
-		struct _str_t* str;
-		struct _obj_t* obj;
-	}value;
-}value_t;
+    pointer_t ptr;
+    struct _str_t* str;
+    struct _obj_t* obj;
+  } value;
+} value_t;
 
 /**
  * @method value_set_int8
@@ -104,7 +104,7 @@ uint8_t value_uint8(value_t v);
  *
  * @return {value_t*} value对象本身。
  */
-value_t* value_set_int16(value_t* v, int16_t value) ;
+value_t* value_set_int16(value_t* v, int16_t value);
 
 /**
  * @method value_int16
@@ -345,7 +345,7 @@ value_t* value_unref(value_t* v);
 bool_t value_is_null(value_t value);
 
 /**
- * @var {value_null} 空值。 
+ * @var {value_null} 空值。
  */
 extern const value_t value_null;
 
@@ -361,4 +361,3 @@ int value_to_int(value_t v);
 END_C_DECLS
 
 #endif
-

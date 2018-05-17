@@ -1,4 +1,4 @@
-/* 
+/*
  * 功能说明：
  *     1.mutex_t类的声明。
  *
@@ -9,7 +9,7 @@
 #include "uclib/types_def.h"
 
 #ifndef MUTEX_H
-#define MUTEX_H 
+#define MUTEX_H
 
 BEGIN_C_DECLS
 
@@ -58,4 +58,3 @@ void mutex_destroy(mutex_t* mutex);
 END_C_DECLS
 
 #endif /*MUTEX_H*/
-

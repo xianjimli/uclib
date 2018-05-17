@@ -1,4 +1,4 @@
-/* 
+/*
  * 功能说明：
  *     1.时间相关的函数。
  *
@@ -32,5 +32,4 @@ void msleep(uint32_t ms);
 
 END_C_DECLS
 
-#endif/*DATE_TIME_H*/
-
+#endif /*DATE_TIME_H*/

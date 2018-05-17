@@ -1,4 +1,4 @@
-/* 
+/*
  * 功能说明：
  *     1.obj_t类的声明。
  *
@@ -10,39 +10,39 @@
 #include "uclib/emitter.h"
 
 #ifndef OBJ_H
-#define OBJ_H 
+#define OBJ_H
 
 BEGIN_C_DECLS
 
 struct _obj_t;
 typedef struct _obj_t obj_t;
 
-typedef obj_t*  (*obj_dup_t)(obj_t* obj);
-typedef bool_t  (*obj_destroy_t)(obj_t* obj);
-typedef bool_t  (*obj_copy_t)(obj_t* obj, obj_t* other);
-typedef bool_t  (*obj_set_prop_t)(obj_t* obj, const char* prop, value_t value);
+typedef obj_t* (*obj_dup_t)(obj_t* obj);
+typedef bool_t (*obj_destroy_t)(obj_t* obj);
+typedef bool_t (*obj_copy_t)(obj_t* obj, obj_t* other);
+typedef bool_t (*obj_set_prop_t)(obj_t* obj, const char* prop, value_t value);
 typedef value_t (*obj_get_prop_t)(obj_t* obj, const char* prop);
 
-typedef bool_t  (*obj_set_t)(obj_t* obj, value_t value);
+typedef bool_t (*obj_set_t)(obj_t* obj, value_t value);
 typedef value_t (*obj_get_t)(obj_t* obj);
 
 /**
- * @class obj_t 
+ * @class obj_t
  * 通用的对象。提供通用的属性设置/获取函数，和事件注册/分发功能。
  */
 struct _obj_t {
-    uint16_t ref;
-    uint16_t magic;
-    emitter_t*     emitter;
+  uint16_t ref;
+  uint16_t magic;
+  emitter_t* emitter;
 
-    /*
-     * 下列函数指针需要子类初始化。
-     */
-    obj_dup_t      dup;
-    obj_copy_t     copy;
-    obj_destroy_t  destroy;
-    obj_set_prop_t set_prop;
-    obj_get_prop_t get_prop;
+  /*
+   * 下列函数指针需要子类初始化。
+   */
+  obj_dup_t dup;
+  obj_copy_t copy;
+  obj_destroy_t destroy;
+  obj_set_prop_t set_prop;
+  obj_get_prop_t get_prop;
 };
 
 /**
@@ -101,7 +101,7 @@ bool_t obj_copy(obj_t* obj, obj_t* other);
  *
  * @return {bool_t} 返回属性值。
  */
-value_t  obj_prop(obj_t* obj, const char* prop);
+value_t obj_prop(obj_t* obj, const char* prop);
 
 /**
  * @method obj_set_prop
@@ -112,7 +112,7 @@ value_t  obj_prop(obj_t* obj, const char* prop);
  *
  * @return {bool_t} 成功返回TRUE，失败返回FALSE。
  */
-bool_t   obj_set_prop(obj_t* obj, const char* prop, value_t value);
+bool_t obj_set_prop(obj_t* obj, const char* prop, value_t value);
 
 /**
  * @method obj_on
@@ -150,5 +150,4 @@ bool_t obj_emit(obj_t* obj, event_t* event);
 
 END_C_DECLS
 
-#endif/*OBJ_H*/
-
+#endif /*OBJ_H*/

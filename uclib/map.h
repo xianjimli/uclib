@@ -1,11 +1,11 @@
-/* 
+/*
  * 功能说明：
  *     1.map_t类的声明。
  *
  * 修改历史：
  *     1.2017-5-6 李先静 创建。
  */
- 
+
 #include "uclib/str.h"
 #include "uclib/array.h"
 
@@ -22,9 +22,9 @@ struct _map_t;
 typedef struct _map_t map_t;
 
 typedef struct _key_value_t {
-    str_t* key;
-	value_t value;
-}key_value_t;
+  str_t* key;
+  value_t value;
+} key_value_t;
 
 /**
  * @method map_create
@@ -41,7 +41,7 @@ map_t* map_create();
  *
  * @return {uint32_t} 元素的个数。
  */
-uint32_t  map_size(map_t* map);
+uint32_t map_size(map_t* map);
 
 /**
  * @method map_get
@@ -51,7 +51,7 @@ uint32_t  map_size(map_t* map);
  *
  * @return {value_t} 值。
  */
-value_t   map_get(map_t* map, const char* key);
+value_t map_get(map_t* map, const char* key);
 
 /**
  * @method map_set
@@ -62,7 +62,7 @@ value_t   map_get(map_t* map, const char* key);
  *
  * @return {bool_t} 成功返回TRUE，失败返回FALSE。
  */
-bool_t    map_set(map_t* map, const char* key, value_t data);
+bool_t map_set(map_t* map, const char* key, value_t data);
 
 /**
  * @method map_delete
@@ -72,7 +72,7 @@ bool_t    map_set(map_t* map, const char* key, value_t data);
  *
  * @return {bool_t} 成功返回TRUE，失败返回FALSE。
  */
-bool_t    map_delete(map_t* map, const char* key);
+bool_t map_delete(map_t* map, const char* key);
 
 /**
  * @method map_foreach
@@ -83,7 +83,7 @@ bool_t    map_delete(map_t* map, const char* key);
  *
  * @return {bool_t} 成功返回TRUE，失败返回FALSE。
  */
-bool_t    map_foreach(map_t* map, visit_t visit, void* ctx);
+bool_t map_foreach(map_t* map, visit_t visit, void* ctx);
 
 /**
  * @method map_clear
@@ -92,7 +92,7 @@ bool_t    map_foreach(map_t* map, visit_t visit, void* ctx);
  *
  * @return {bool_t} 成功返回TRUE，失败返回FALSE。
  */
-bool_t    map_clear(map_t* map);
+bool_t map_clear(map_t* map);
 
 /**
  * @method map_destroy
@@ -105,5 +105,4 @@ void map_destroy(map_t* map);
 
 END_C_DECLS
 
-#endif/*MAP_H*/
-
+#endif /*MAP_H*/

@@ -1,4 +1,4 @@
-/* 
+/*
  * 功能说明：
  *     1.emitter_t类的声明。
  *
@@ -10,23 +10,23 @@
 #include "uclib/map.h"
 
 #ifndef EVENT_H
-#define EVENT_H 
+#define EVENT_H
 
 BEGIN_C_DECLS
 
 /**
- * @class event_t 
+ * @class event_t
  * 事件。
  */
 typedef struct _event_t {
-    uint32_t ref;
-    /**
-     * @property {str_t*} type
-     * 事件类型。
-     */
-    str_t* type;
-    map_t* params;
-}event_t;
+  uint32_t ref;
+  /**
+   * @property {str_t*} type
+   * 事件类型。
+   */
+  str_t* type;
+  map_t* params;
+} event_t;
 
 /**
  * @method event_create
@@ -44,7 +44,7 @@ event_t* event_create(const char* type);
  *
  * @return {bool_t} 成功返回TRUE，失败返回FALSE。
  */
-bool_t   event_set_type(event_t* event, const char* type);
+bool_t event_set_type(event_t* event, const char* type);
 
 /**
  * @method event_set_param
@@ -55,7 +55,7 @@ bool_t   event_set_type(event_t* event, const char* type);
  *
  * @return {bool_t} 成功返回TRUE，失败返回FALSE。
  */
-bool_t   event_set_param(event_t* event, const char* name, const char* value);
+bool_t event_set_param(event_t* event, const char* name, const char* value);
 
 /**
  * @method event_get_param
@@ -90,4 +90,3 @@ void event_dump(event_t* event, str_t* str);
 END_C_DECLS
 
 #endif
-

@@ -1,4 +1,4 @@
-/* 
+/*
  * 功能说明：
  *     1.thread_t类的声明。
  *
@@ -8,10 +8,10 @@
 #include "uclib/types_def.h"
 
 #ifndef THREAD_H
-#define THREAD_H 
+#define THREAD_H
 
 /**
- * @class thread_t 
+ * @class thread_t
  * 线程对象。
  */
 struct _thread_t;
@@ -58,5 +58,4 @@ void thread_destroy(thread_t* thread);
 
 END_C_DECLS
 
-#endif/*THREAD_H*/
-
+#endif /*THREAD_H*/

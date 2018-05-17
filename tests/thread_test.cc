@@ -44,3 +44,21 @@ TEST(thread, basic) {
     mutex_destroy(data.mutex);
 }
 
+static void* fastquit(void* args) {
+  return NULL;
+}
+
+TEST(thread, fastquit) {
+    size_t i = 0;
+    thread_t* threads[NR];
+
+    for(i = 0; i < NR; i++) {
+        threads[i] = thread_create(fastquit, NULL);
+        thread_start(threads[i]);
+    }   
+    for(i = 0; i < NR; i++) {
+        thread_join(threads[i]);
+        thread_destroy(threads[i]);
+    }
+}
+
